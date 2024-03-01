@@ -27,10 +27,8 @@ void bubble_sort(int *array, size_t size)
 				sorted = 1;
 			}
 		}
-		if (sorted == 0)
-			break;
-
+	/*break the outer loop when the array is already sorted*/
+	if (sorted == 0)
+		break;
 	}
 }
-
-
