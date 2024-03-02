@@ -63,7 +63,6 @@ void quick_sort_recursive(int *array, int first, int last, size_t size)
 		/*Partition the array and get the partitioning index*/
 		pi = lomuto_partition(array, first, last, size);
 
-
 		/*Recursively sort the left subarray*/
 		quick_sort_recursive(array, first, pi - 1, size);
 		/*Recursively sort the right subarray*/
