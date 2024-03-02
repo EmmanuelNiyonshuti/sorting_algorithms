@@ -11,7 +11,7 @@
  * Return: The index of the partitioned element.
  */
 
-int Lomuto_partition(int *array, int first, int last, size_t size)
+int lomuto_partition(int *array, int first, int last, size_t size)
 {
 	int pivot, i, j, temp;
 
@@ -48,7 +48,7 @@ int Lomuto_partition(int *array, int first, int last, size_t size)
  * using the Quick sort algorithm.
  * It partitions the array using the Lomuto Partition Scheme.
  * @array: The array to be sorted.
- * @start: The starting index of the partition.
+ * @first: The starting index of the partition.
  * @last: The ending index of the partition.
  * @size: The size of the array.
  *
@@ -58,10 +58,10 @@ void quick_sort_recursive(int *array, int first, int last, size_t size)
 {
 	int pi;
 
-	if (first <= last)
+	if (first < last)
 	{
 		/*Partition the array and get the partitioning index*/
-		pi = Lomuto_partition(array, first, last, size);
+		pi = lomuto_partition(array, first, last, size);
 
 
 		/*Recursively sort the left subarray*/
