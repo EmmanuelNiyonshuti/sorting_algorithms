@@ -24,7 +24,7 @@ int Lomuto_partition(int *array, int first, int last, size_t size)
 		if (array[j] < pivot)
 		{
 			i++;
-			if (j > i)
+			if (i != j)
 			{
 				temp = array[i];
 				array[i] = array[j];
@@ -58,7 +58,7 @@ void quick_sort_recursive(int *array, int first, int last, size_t size)
 {
 	int pi;
 
-	if (first < last)
+	if (first <= last)
 	{
 		/*Partition the array and get the partitioning index*/
 		pi = Lomuto_partition(array, first, last, size);
