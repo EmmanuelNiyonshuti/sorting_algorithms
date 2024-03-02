@@ -1,21 +1,4 @@
 #include "sort.h"
-
-/**
- * swap - swap integers.
- * @a: int 1.
- * @b: int 2.
- *
- * Return: Void.
-*/
-
-void swap(int *a, int *b)
-{
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
 /**
  * lomuto_partition - partitions an array
  * using the Lomuto Partition Scheme.
@@ -30,7 +13,7 @@ void swap(int *a, int *b)
 
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
-	int pivot, i, j;
+	int pivot, i, j, temp;
 
 	pivot = array[high];
 	i = low - 1;
@@ -43,19 +26,17 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 			i++;
 			if (i != j)
 			{
-				swap(&array[i], &array[j]);
-				/*temp = array[i];
+				temp = array[i];
 				array[i] = array[j];
-				array[j] = temp;*/
+				array[j] = temp;
 				print_array(array, size);
 			}
 		}
 	}
-	swap(&array[i + 1], &array[high]);
-	/*place pivot at correct position
+	/*place pivot at correct position*/
 	temp = array[i + 1];
 	array[i + 1] = array[high];
-	array[high] = temp;*/
+	array[high] = temp;
 	print_array(array, size);
 
 
@@ -93,7 +74,7 @@ void quick_sort_recursive(int *array, int low, int high, size_t size)
 /**
  * quick_sort - sorts an array of integers in ascending order
  * using the Quick sort algorithm.
- *It partitions the array using the Lomuto Partition Scheme.
+ * It partitions the array using the Lomuto Partition Scheme.
  * @array: The array to be sorted.
  * @size: The size of the array.
  *
