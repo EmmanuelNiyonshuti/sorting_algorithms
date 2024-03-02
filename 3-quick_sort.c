@@ -4,22 +4,22 @@
  * using the Lomuto Partition Scheme.
  * It chooses the pivot as the last element.
  * @array: The array to be partitioned.
- * @low: The starting index of the partition.
- * @high: The ending index of the partition.
+ * @first: The starting index of the partition.
+ * @last: The ending index of the partition.
  * @size: The size of the array.
  *
  * Return: The index of the partitioned element.
  */
 
-int lomuto_partition(int *array, int low, int high, size_t size)
+int Lomuto_partition(int *array, int first, int last, size_t size)
 {
 	int pivot, i, j, temp;
 
-	pivot = array[high];
-	i = low - 1;
+	pivot = array[last];
+	i = first - 1;
 
 	/* Iterate through the array to partition */
-	for (j = low; j < high; j++)
+	for (j = first; j <= last; j++)
 	{
 		if (array[j] < pivot)
 		{
@@ -35,8 +35,8 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 	}
 	/*place pivot at correct position*/
 	temp = array[i + 1];
-	array[i + 1] = array[high];
-	array[high] = temp;
+	array[i + 1] = array[last];
+	array[last] = temp;
 	print_array(array, size);
 
 
@@ -48,26 +48,26 @@ int lomuto_partition(int *array, int low, int high, size_t size)
  * using the Quick sort algorithm.
  * It partitions the array using the Lomuto Partition Scheme.
  * @array: The array to be sorted.
- * @low: The starting index of the partition.
- * @high: The ending index of the partition.
+ * @start: The starting index of the partition.
+ * @last: The ending index of the partition.
  * @size: The size of the array.
  *
  * Return: Void.
  */
-void quick_sort_recursive(int *array, int low, int high, size_t size)
+void quick_sort_recursive(int *array, int first, int last, size_t size)
 {
 	int pi;
 
-	if (low < high)
+	if (first < last)
 	{
 		/*Partition the array and get the partitioning index*/
-		pi = lomuto_partition(array, low, high, size);
+		pi = Lomuto_partition(array, first, last, size);
 
 
 		/*Recursively sort the left subarray*/
-		quick_sort_recursive(array, low, pi - 1, size);
+		quick_sort_recursive(array, first, pi - 1, size);
 		/*Recursively sort the right subarray*/
-		quick_sort_recursive(array, pi + 1, high, size);
+		quick_sort_recursive(array, pi + 1, last, size);
 	}
 }
 
