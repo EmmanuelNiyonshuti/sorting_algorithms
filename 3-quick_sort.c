@@ -1,4 +1,21 @@
 #include "sort.h"
+
+/**
+ * swap - swap integers.
+ * @a: int 1.
+ * @b: int 2.
+ *
+ * Return: Void.
+*/
+
+void swap(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 /**
  * lomuto_partition - partitions an array
  * using the Lomuto Partition Scheme.
@@ -13,7 +30,7 @@
 
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
-	int pivot, i, j, temp;
+	int pivot, i, j;
 
 	pivot = array[high];
 	i = low - 1;
@@ -26,17 +43,19 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 			i++;
 			if (i != j)
 			{
-				temp = array[i];
+				swap(&array[i], &array[j]);
+				/*temp = array[i];
 				array[i] = array[j];
-				array[j] = temp;
+				array[j] = temp;*/
 				print_array(array, size);
 			}
 		}
 	}
-	/*place pivot at correct position*/
+	swap(&array[i + 1], &array[high]);
+	/*place pivot at correct position
 	temp = array[i + 1];
 	array[i + 1] = array[high];
-	array[high] = temp;
+	array[high] = temp;*/
 	print_array(array, size);
 
 
