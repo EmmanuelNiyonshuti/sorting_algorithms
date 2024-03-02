@@ -29,7 +29,6 @@ int lomuto_partition(int *array, int first, int last, size_t size)
 				tmp = array[i];
 				array[i] = array[j];
 				array[j] = tmp;
-				/*swap(&array[i], &array[j]);*/
 				print_array(array, size);
 			}
 		}
@@ -40,7 +39,6 @@ int lomuto_partition(int *array, int first, int last, size_t size)
 		tmp = array[i + 1];
 		array[i + 1] = array[last];
 		array[last] = tmp;
-		/*swap(&array[i + 1], &array[last]);*/
 		print_array(array, size);
 	}
 
