@@ -1,49 +1,48 @@
 #include "sort.h"
+
 /**
- * insertion_sort_list - sorts a doubly linked list of integers
- * in ascending order using the Insertion sort algorithm.
- * @list: Pointer to a pointer to a linked list.
+ * swap_nodes - Swap two nodes in a listint_t doubly-linked list.
+ * @h: A pointer to the head of the doubly-linked list.
+ * @n1: A pointer to the first node to swap.
+ * @n2: The second node to swap.
+ */
+void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2)
+{
+	(*n1)->next = n2->next;
+	if (n2->next != NULL)
+		n2->next->prev = *n1;
+	n2->prev = (*n1)->prev;
+	n2->next = *n1;
+	if ((*n1)->prev != NULL)
+		(*n1)->prev->next = n2;
+	else
+		*h = n2;
+	(*n1)->prev = n2;
+	*n1 = n2->prev;
+}
+
+/**
+ * insertion_sort_list - Sorts a doubly linked list of integers
+ *                       using the insertion sort algorithm.
+ * @list: A pointer to the head of a doubly-linked list of integers.
  *
- * Return: Void.
-*/
+ * Description: Prints the list after each swap.
+ */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *sorted;
-	listint_t *curr;
-	listint_t *next;
-	listint_t *tmp;
-
-	sorted = NULL;
-	curr = *list;
+	listint_t *iter, *insert, *tmp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	while (curr != NULL)
+	for (iter = (*list)->next; iter != NULL; iter = tmp)
 	{
-		next = curr->next;
-		curr->prev = curr->next = NULL;
-		/*Find the correct position to insert current node in the sorted list*/
-		if (sorted == NULL || sorted->n >= curr->n)
+		tmp = iter->next;
+		insert = iter->prev;
+		while (insert != NULL && iter->n < insert->n)
 		{
-			curr->next = sorted;
-			if (sorted != NULL)
-				sorted->prev = curr;
-			sorted = curr;
+			swap_nodes(list, &insert, iter);
+			print_list((const listint_t *)*list);
 		}
-		else
-		{
-			/*start traversing the sorted list*/
-			tmp = sorted;
-			while (tmp->next != NULL && tmp->next->n < curr->n)
-				tmp = tmp->next;
-			curr->next = tmp->next;
-			if (tmp->next != NULL)
-				tmp->next->prev = curr;
-			tmp->next = curr;
-			curr->prev = tmp;
-		}
-		curr = next;
 	}
-	*list = sorted;
 }
