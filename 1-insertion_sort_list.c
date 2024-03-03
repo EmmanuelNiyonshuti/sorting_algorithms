@@ -23,7 +23,6 @@ void insertion_sort_list(listint_t **list)
 	{
 		next = curr->next;
 		curr->prev = curr->next = NULL;
-
 		/*Find the correct position to insert current node in the sorted list*/
 		if (sorted == NULL || sorted->n >= curr->n)
 		{
@@ -39,11 +38,13 @@ void insertion_sort_list(listint_t **list)
 			while (tmp->next != NULL && tmp->next->n < curr->n)
 				tmp = tmp->next;
 			curr->next = tmp->next;
+
 			if (tmp->next != NULL)
 				tmp->next->prev = curr;
+
 			tmp->next = curr;
 			curr->prev = tmp;
-		}
+}
 		curr = next;
 	}
 	*list = sorted;
