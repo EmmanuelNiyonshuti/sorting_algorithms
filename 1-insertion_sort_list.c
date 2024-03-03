@@ -38,13 +38,10 @@ void insertion_sort_list(listint_t **list)
 			while (tmp->next != NULL && tmp->next->n < curr->n)
 				tmp = tmp->next;
 			curr->next = tmp->next;
-
 			if (tmp->next != NULL)
 				tmp->next->prev = curr;
-
 			tmp->next = curr;
 			curr->prev = tmp;
-			print_list(*list);
 		}
 		curr = next;
 	}
