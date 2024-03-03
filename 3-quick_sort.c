@@ -34,7 +34,7 @@ int lomuto_partition(int *array, int first, int last, size_t size)
 		}
 	}
 	/*place pivot at correct position*/
-	if (i + 1 != last)
+	if (array[i + 1] != array[last])
 	{
 		tmp = array[i + 1];
 		array[i + 1] = array[last];
